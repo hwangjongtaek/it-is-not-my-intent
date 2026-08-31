@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/mascot.png" alt="Pixel-art orc warlord in the likeness of Grom Hellscream, flustered and raising a hand defensively, with a speech bubble reading 'IT IS NOT MY INTENT!'" width="320">
+</p>
+
 # it-is-not-my-intent
 
 > A drop-in `AGENTS.md` template for paying down **intent debt** before an agent
@@ -45,7 +49,7 @@ once, so nobody (human or agent) has to reconstruct it again.
    decisions — the ones that live in someone's head right now.
 3. Point your coding agent's instructions at this file (most agent harnesses
    already look for `AGENTS.md` at the repo root).
-4. From then on, treat section 4 (decision log) as part of the PR checklist,
+4. From then on, treat section 5 (decision log) as part of the PR checklist,
    not optional documentation.
 
 ## What's inside
