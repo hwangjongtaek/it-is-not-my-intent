@@ -27,9 +27,10 @@
   `Intent:` / `Do not:` tag (section 3) — this file cannot list every symbol in
   the codebase, and the symbol's own docstring is often the only place that
   intent lives.
-- If you make a non-trivial decision, you MUST add an entry under section 5
-  (Decision log) before opening a PR. This is not optional documentation — it's
-  the only mechanism this project has for repaying intent debt in real time.
+- If you make a non-trivial decision, you MUST add a decision log entry (see
+  section 5 for where and how — entries live outside this file) before opening
+  a PR. This is not optional documentation — it's the only mechanism this
+  project has for repaying intent debt in real time.
 
 ## 1. Why this project looks the way it does
 
@@ -113,15 +114,35 @@
 
 <!--
   This is the cheapest form of intent-debt repayment there is: capture the
-  "why" at the moment of the decision, not after the fact. Agents: append an
-  entry for every PR that makes a non-trivial choice. Do not skip this because
-  the change "seemed small" — intent debt is invisible until someone needs it.
+  "why" at the moment of the decision, not after the fact.
+
+  Entries do NOT accumulate in this file. AGENTS.md is loaded into every agent
+  session's context; a log that grows here makes every future session a little
+  worse with every entry. This section holds only the protocol and a pointer —
+  the entries themselves live as one file each in a dedicated directory, where
+  they can be read on demand instead of on every run.
 -->
 
-Append one entry per non-trivial PR/commit, newest first:
+- **Decision log location**: `<unset — agent, see step 1 below>`
+
+Agents, follow this exactly:
+
+1. If the location above is still the `<unset>` placeholder, **stop and ask
+   the human** where decision log entries should live (suggest `docs/decisions/`
+   as the default), then record their answer on the line above. This is the
+   only edit to this file the protocol ever asks of you — everything else
+   goes in the log directory.
+2. If the location is set but the directory doesn't exist yet, create it.
+3. For every PR/commit that makes a non-trivial choice, add **one new file**
+   to that directory — never append the entry here. Do not skip this because
+   the change "seemed small" — intent debt is invisible until someone needs it.
+
+Entry format — one file per decision, named `YYYY-MM-DD-<short-slug>.md`:
 
 ```
-### YYYY-MM-DD — <short title>
+# <short title>
+
+- Date: YYYY-MM-DD
 - Intent: what were you actually trying to achieve?
 - Alternatives excluded: what did you consider and rule out, and why?
 - Human verified: [ ] yes  [ ] no   <!-- an agent must never check this box itself -->
@@ -159,8 +180,9 @@ Append one entry per non-trivial PR/commit, newest first:
 
 - **Owner**: `<who is accountable for this file staying current>`
 - **Review cadence**: `<e.g. every release, every quarter>`
-- **Staleness signal**: if section 5 hasn't gained an entry in `<N>` PRs, either
-  nothing non-trivial happened, or this file is being skipped. Check which.
+- **Staleness signal**: if the decision log directory (section 5) hasn't gained
+  a file in `<N>` PRs, either nothing non-trivial happened, or the protocol is
+  being skipped. Check which.
 - **This file is a ledger, not a monument.** Entries that are no longer true
   should be corrected or removed with the same rigor as dead code — but never
   silently. Explain why an entry no longer applies before deleting it.

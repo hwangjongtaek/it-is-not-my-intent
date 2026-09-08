@@ -49,8 +49,12 @@ once, so nobody (human or agent) has to reconstruct it again.
    decisions — the ones that live in someone's head right now.
 3. Point your coding agent's instructions at this file (most agent harnesses
    already look for `AGENTS.md` at the repo root).
-4. From then on, treat section 5 (decision log) as part of the PR checklist,
-   not optional documentation.
+4. From then on, treat the decision log (section 5) as part of the PR
+   checklist, not optional documentation. Entries don't accumulate inside
+   `AGENTS.md` — that would bloat the context every agent session loads.
+   Instead they live as one file each in a dedicated directory; the first
+   agent to need one will ask you where that directory should be (default:
+   `docs/decisions/`) and record the answer in `AGENTS.md`.
 
 ## What's inside
 
